@@ -3,14 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
     <title>Aura Financial | Q3 2025 Earnings Report</title>
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Reveal.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/night.css" id="theme">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
 
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <style>
@@ -56,7 +59,7 @@
             left: 30px;
             font-size: 14px;
             color: #ccc;
-            opacity: 0.5;
+            opacity: 0.8;
         }
 
         /* Styling for KPI dashboard blocks */
@@ -230,36 +233,58 @@ VaR_95 = np.percentile(price_paths[-1], 5)
         </div>
     </div>
 
+    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/math/math.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/mermaid/mermaid.js"></script>
 
     <script>
+        // Initialize Mermaid before Reveal.js
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'dark',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+
+        // Initialize Reveal.js
         Reveal.initialize({
             history: true,
             center: true,
             width: 1280,
             height: 720,
-            transition: 'convex', // A more dynamic slide transition
-            backgroundTransition: 'fade', // Transition for backgrounds
-            plugins: [ RevealMarkdown, RevealHighlight, RevealMath.KaTeX, RevealNotes, RevealMermaid ]
+            transition: 'convex',
+            backgroundTransition: 'fade',
+            plugins: [ 
+                RevealMarkdown, 
+                RevealHighlight, 
+                RevealMath.KaTeX, 
+                RevealNotes, 
+                RevealMermaid 
+            ]
         });
 
-        // This event listener ensures the chart only draws when the slide is visible.
-        // This is a best practice for performance.
-        Reveal.addEventListener('slidechanged', function(event) {
-            if (event.currentSlide.id === 'chart-slide') {
-                // Check if the chart has already been initialized
-                if (typeof window.myRevenueChart === 'undefined' || window.myRevenueChart === null) {
-                    renderRevenueChart();
-                }
+        // Initialize chart when slide is loaded or becomes visible
+        function initChartWhenVisible() {
+            const currentSlide = Reveal.getCurrentSlide();
+            if (currentSlide.id === 'chart-slide') {
+                renderRevenueChart();
             }
-        });
+        }
 
+        // Render the revenue chart
         function renderRevenueChart() {
+            // Check if chart already exists
+            if (window.myRevenueChart) {
+                window.myRevenueChart.destroy();
+            }
+            
             const ctx = document.getElementById('revenueChart').getContext('2d');
             const chartData = {
                 labels: ['Wealth Management', 'Asset Management', 'Investment Banking', 'Consumer Lending'],
@@ -322,6 +347,10 @@ VaR_95 = np.percentile(price_paths[-1], 5)
                 }
             });
         }
+
+        // Set up event listeners
+        Reveal.addEventListener('ready', initChartWhenVisible);
+        Reveal.addEventListener('slidechanged', initChartWhenVisible);
     </script>
 </body>
 </html>
