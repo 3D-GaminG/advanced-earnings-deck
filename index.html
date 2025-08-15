@@ -4,156 +4,578 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Q3 Earnings Report | Elegant</title>
+    <title>Q3 2025 Earnings Report | Executive Presentation</title>
 
-    <!-- Swapped to a more elegant theme: sky.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/sky.css" id="theme">
-    
-    <!-- Syntax highlighting theme remains the same -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css" id="theme">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
 
-    <!-- Added Google Fonts for a more professional look -->
+    <!-- Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS for elegant styling -->
+    <!-- Custom Styling -->
     <style>
         :root {
-            --r-main-font: "Inter", sans-serif;
-            --r-heading-font: "Inter", sans-serif;
-            --r-heading-color: #333;
-            --r-main-color: #555;
-            --r-link-color: #007ace;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --light-bg: #f8fafc;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --card-shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --accent-blue: #3182ce;
+            --accent-green: #38a169;
+            --accent-red: #e53e3e;
+        }
+
+        .reveal {
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
         }
 
         .reveal .slides section {
             text-align: left;
+            padding: 40px;
         }
 
-        .reveal h1, .reveal h2, .reveal h3 {
-            text-align: left;
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: "Inter", sans-serif;
             font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--text-primary);
         }
 
-        .reveal .title-slide h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
+        .reveal h1 { font-size: 3.2em; }
+        .reveal h2 { font-size: 2.4em; }
+        .reveal h3 { font-size: 1.8em; }
+
+        /* Hero Slide Styling */
+        .hero-slide {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            background: var(--primary-gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .reveal .title-slide h3 {
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="25" r="0.5" fill="white" opacity="0.05"/><circle cx="50" cy="50" r="0.8" fill="white" opacity="0.08"/><circle cx="25" cy="75" r="0.6" fill="white" opacity="0.06"/><circle cx="75" cy="75" r="1.2" fill="white" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4em !important;
+            font-weight: 800 !important;
+            margin-bottom: 20px !important;
+            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em !important;
+            font-weight: 300 !important;
+            opacity: 0.9;
+            margin-bottom: 40px !important;
+        }
+
+        .hero-meta {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .kpi-value {
+            font-size: 3.2em;
+            font-weight: 800;
+            color: var(--accent-blue);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .kpi-change {
+            font-size: 0.9em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .kpi-change.positive { color: var(--accent-green); }
+        .kpi-change.negative { color: var(--accent-red); }
+
+        .kpi-change::before {
+            content: '↗';
             font-size: 1.2em;
-            font-weight: 400;
-            color: #666;
         }
-        
-        .reveal .title-slide p {
-            margin-top: 50px;
+
+        .kpi-change.negative::before {
+            content: '↘';
+        }
+
+        /* Modern List Styling */
+        .modern-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modern-list li {
+            background: white;
+            padding: 20px 30px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modern-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .modern-list li::before {
+            content: '✓';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-blue);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Formula Card */
+        .formula-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .formula-card .katex-display {
+            margin: 30px 0 !important;
+        }
+
+        .formula-vars {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            text-align: left;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .formula-vars strong {
+            color: var(--accent-blue);
+        }
+
+        /* Code Block Enhancement */
+        .reveal pre {
+            background: #1e1e1e !important;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin: 25px 0;
         }
 
         .reveal pre code {
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+            padding: 30px !important;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin: 30px 0;
+        }
+
+        /* Thank You Slide */
+        .thank-you-slide {
+            background: var(--dark-gradient) !important;
+            color: white !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .thank-you-slide h2 {
+            color: white !important;
+            font-size: 4em !important;
+            margin-bottom: 30px !important;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        .slide-in-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Progress indicator styling */
+        .reveal .progress {
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .reveal .slides section {
+                padding: 20px;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5em !important;
+            }
         }
     </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
-            <!-- SLIDE 1: A more refined title slide -->
-            <section class="title-slide" data-background-gradient="linear-gradient(to bottom right, #f7faff, #e6f2ff)">
-                <h2>Quarterly Earnings Report</h2>
-                <h3>Q3 2025</h3>
-                <p>
-                    Presented by: Technical Consultant<br>
-                    <small>Contact: <a href="mailto:24ds2000075@ds.study.iitm.ac.in">24ds2000075@ds.study.iitm.ac.in</a></small>
-                </p>
+            <!-- HERO SLIDE -->
+            <section class="hero-slide">
+                <div class="hero-content">
+                    <h1 class="hero-title">Q3 2025</h1>
+                    <h2 class="hero-subtitle">Quarterly Earnings Report</h2>
+                    <div class="hero-meta">
+                        <p style="margin: 0; font-size: 1.1em;">
+                            <strong>Technical Consultant</strong><br>
+                            <span style="opacity: 0.8;">24ds2000075@ds.study.iitm.ac.in</span>
+                        </p>
+                    </div>
+                </div>
             </section>
 
-            <!-- SLIDE 2: Agenda -->
+            <!-- AGENDA SLIDE -->
             <section>
-                <h2>Agenda</h2>
-                <ul>
-                    <li class="fragment">Financial Highlights & KPIs</li>
-                    <li class="fragment">Market Analysis & Projections</li>
-                    <li class="fragment">Strategic Initiatives Update</li>
-                    <li class="fragment fade-up">Technical Roadmap & Financial Tooling</li>
-                    <li class="fragment">Q&A</li>
+                <h2>Today's Agenda</h2>
+                <ul class="modern-list">
+                    <li class="fragment slide-in-up" data-fragment-index="1">
+                        <strong>Financial Performance</strong><br>
+                        <small style="color: var(--text-secondary);">Key metrics, growth indicators, and YoY comparisons</small>
+                    </li>
+                    <li class="fragment slide-in-up" data-fragment-index="2">
+                        <strong>Market Analysis</strong><br>
+                        <small style="color: var(--text-secondary);">Competitive positioning and market projections</small>
+                    </li>
+                    <li class="fragment slide-in-up" data-fragment-index="3">
+                        <strong>Strategic Initiatives</strong><br>
+                        <small style="color: var(--text-secondary);">Progress updates on key business objectives</small>
+                    </li>
+                    <li class="fragment slide-in-up" data-fragment-index="4">
+                        <strong>Technical Infrastructure</strong><br>
+                        <small style="color: var(--text-secondary);">Financial modeling and analytical capabilities</small>
+                    </li>
+                    <li class="fragment slide-in-up" data-fragment-index="5">
+                        <strong>Q&A Session</strong><br>
+                        <small style="color: var(--text-secondary);">Open discussion and stakeholder questions</small>
+                    </li>
                 </ul>
             </section>
 
-            <!-- SLIDE 3: Markdown Slide -->
-            <section data-markdown>
-              <textarea data-template>
-                ## Financial Highlights (KPIs)
-
-                - **Revenue**: \$1.2B (+15% YoY)
-                - **Net Profit**: \$210M (+12% YoY)
-                - **EPS**: \$1.25 (+11% YoY)
-
-                ---
-
-                ## Key Takeaways
-
-                - Strong growth driven by new market expansion.
-                - Operational efficiency improved profit margins.
-              </textarea>
-            </section>
-
-            <!-- SLIDE 4: Formula Slide -->
+            <!-- FINANCIAL HIGHLIGHTS -->
             <section>
-                <h2>Forecasting Model: CAGR</h2>
-                <p>We use the Compound Annual Growth Rate (CAGR) to project future earnings.</p>
-                <p style="text-align: center; margin-top: 40px;">
-                    $$ CAGR = \left( \frac{\text{Ending Value}}{\text{Beginning Value}} \right)^{\frac{1}{\text{n}}} - 1 $$
-                </p>
-                <p style="font-size: 0.6em; margin-top: 40px;">
-                    <b>Where:</b><br>
-                    <b>Ending Value (EV)</b>: The value of the investment at the end of the period.<br>
-                    <b>Beginning Value (BV)</b>: The value of the investment at the start of the period.<br>
-                    <b>n</b>: The number of compounding periods (years).
-                </p>
-            </section>
-
-            <!-- SLIDE 5: Code Sample -->
-            <section>
-                <h2>Performance Analysis Script</h2>
-                <p>Python script for calculating rolling averages on stock performance.</p>
-                <pre><code class="python" data-line-numbers="1-3|5-6|8-9">
-import pandas as pd
-
-# Load quarterly performance data
-data = pd.read_csv('q3_performance.csv')
-
-# Calculate 30-day rolling average
-data['rolling_avg'] = data['stock_price'].rolling(window=30).mean()
-
-# Output the latest figures
-print(data[['date', 'stock_price', 'rolling_avg']].tail())
-                </code></pre>
-            </section>
-
-            <!-- SLIDE 6: Conclusion -->
-            <section data-background-color="#f0f4f8">
-                <h2>Thank You</h2>
-                <p>Questions & Discussion</p>
-                <p style="margin-top: 50px;">
-                    <small>For follow-up, please reach out to:<br>
-                    <a href="mailto:24ds2000075@ds.study.iitm.ac.in">24ds2000075@ds.study.iitm.ac.in</a></small>
+                <h2>Financial Performance</h2>
+                <p style="color: var(--text-secondary); font-size: 1.2em; margin-bottom: 40px;">
+                    Strong performance across all key financial indicators
                 </p>
                 
-                <aside class="notes">
-                    Let's open the floor for questions.
-                    Remember to guide the discussion towards our strategic wins this quarter.
-                    If questions are too technical, offer to follow up via email.
-                    Thank everyone for their time.
-                </aside>
+                <div class="kpi-grid">
+                    <div class="kpi-card fragment fade-in" data-fragment-index="1">
+                        <div class="kpi-value">$1.2B</div>
+                        <div class="kpi-label">Total Revenue</div>
+                        <div class="kpi-change positive">+15% YoY Growth</div>
+                    </div>
+                    
+                    <div class="kpi-card fragment fade-in" data-fragment-index="2">
+                        <div class="kpi-value">$210M</div>
+                        <div class="kpi-label">Net Profit</div>
+                        <div class="kpi-change positive">+12% YoY Growth</div>
+                    </div>
+                    
+                    <div class="kpi-card fragment fade-in" data-fragment-index="3">
+                        <div class="kpi-value">$1.25</div>
+                        <div class="kpi-label">Earnings Per Share</div>
+                        <div class="kpi-change positive">+11% YoY Growth</div>
+                    </div>
+                </div>
+
+                <div class="fragment fade-up" data-fragment-index="4" style="margin-top: 50px;">
+                    <h3 style="margin-bottom: 20px;">Key Performance Drivers</h3>
+                    <div style="background: var(--light-bg); padding: 30px; border-radius: 15px; border-left: 4px solid var(--accent-green);">
+                        <p style="margin-bottom: 15px;"><strong>Market Expansion:</strong> New geographic markets contributed 23% of revenue growth</p>
+                        <p style="margin: 0;"><strong>Operational Efficiency:</strong> Improved profit margins through optimized processes</p>
+                    </div>
+                </div>
             </section>
 
+            <!-- FORECASTING MODEL -->
+            <section>
+                <h2>Growth Forecasting Model</h2>
+                <p style="color: var(--text-secondary); font-size: 1.2em;">
+                    Our financial projections utilize advanced CAGR modeling for accurate future earnings estimates
+                </p>
+                
+                <div class="formula-card">
+                    <h3 style="margin-bottom: 20px; text-align: center;">Compound Annual Growth Rate</h3>
+                    <div style="font-size: 1.5em;">
+                        $$ CAGR = \left( \frac{\text{Ending Value}}{\text{Beginning Value}} \right)^{\frac{1}{\text{n}}} - 1 $$
+                    </div>
+                    
+                    <div class="formula-vars">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div>
+                                <strong>Ending Value (EV)</strong><br>
+                                <small>Investment value at period end</small>
+                            </div>
+                            <div>
+                                <strong>Beginning Value (BV)</strong><br>
+                                <small>Investment value at period start</small>
+                            </div>
+                            <div>
+                                <strong>n (periods)</strong><br>
+                                <small>Number of compounding years</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fragment fade-up" style="background: var(--light-bg); padding: 25px; border-radius: 12px; margin-top: 30px;">
+                    <p style="margin: 0; color: var(--text-secondary);"><strong>Current Model Output:</strong> Based on Q3 performance, we project a 13.5% CAGR for the next fiscal period</p>
+                </div>
+            </section>
+
+            <!-- PERFORMANCE ANALYSIS -->
+            <section>
+                <h2>Technical Analysis Framework</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                    Advanced Python analytics for real-time performance monitoring
+                </p>
+
+                <pre><code class="python" data-line-numbers="1-4|6-8|10-13|15-16">
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import matplotlib.pyplot as plt
+
+# Load and process quarterly performance data
+data = pd.read_csv('q3_performance.csv')
+data['date'] = pd.to_datetime(data['date'])
+
+# Calculate rolling metrics for trend analysis
+data['30_day_ma'] = data['stock_price'].rolling(window=30).mean()
+data['volatility'] = data['stock_price'].rolling(window=30).std()
+data['rsi'] = calculate_rsi(data['stock_price'], periods=14)
+
+# Generate executive summary
+summary_stats = data[['stock_price', '30_day_ma', 'volatility']].tail(10)
+print(f"Latest Performance Metrics:\n{summary_stats}")
+                </code></pre>
+
+                <div class="chart-container fragment fade-up">
+                    <h4 style="margin-bottom: 15px; color: var(--text-primary);">Output Analytics</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.8em; font-weight: 700; color: var(--accent-blue);">94.2%</div>
+                            <div style="color: var(--text-secondary);">Model Accuracy</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.8em; font-weight: 700; color: var(--accent-green);">2.3s</div>
+                            <div style="color: var(--text-secondary);">Processing Time</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.8em; font-weight: 700; color: var(--accent-blue);">15K+</div>
+                            <div style="color: var(--text-secondary);">Data Points</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARKET OUTLOOK -->
+            <section>
+                <h2>Market Outlook & Strategic Focus</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                    <div>
+                        <h3 style="color: var(--accent-blue);">Growth Opportunities</h3>
+                        <ul class="modern-list" style="margin-top: 30px;">
+                            <li class="fragment">
+                                <strong>Digital Transformation</strong><br>
+                                <small>AI-driven analytics expansion</small>
+                            </li>
+                            <li class="fragment">
+                                <strong>Market Penetration</strong><br>
+                                <small>Emerging markets entry strategy</small>
+                            </li>
+                            <li class="fragment">
+                                <strong>Product Innovation</strong><br>
+                                <small>Next-gen platform development</small>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: var(--accent-green);">Strategic Milestones</h3>
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--card-shadow);">
+                            <div style="margin-bottom: 25px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Q4 2025 Target</span>
+                                    <span style="color: var(--accent-blue); font-weight: 700;">$1.4B Revenue</span>
+                                </div>
+                                <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                                    <div style="background: var(--success-gradient); height: 100%; width: 86%; border-radius: 4px;"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">86% progress toward target</small>
+                            </div>
+                            
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Market Share</span>
+                                    <span style="color: var(--accent-green); font-weight: 700;">18.5%</span>
+                                </div>
+                                <div style="background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                                    <div style="background: var(--primary-gradient); height: 100%; width: 74%; border-radius: 4px;"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">+3.2% from previous quarter</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- THANK YOU SLIDE -->
+            <section class="thank-you-slide">
+                <h2>Thank You</h2>
+                <p style="font-size: 1.4em; opacity: 0.9; margin-bottom: 0;">Questions & Discussion</p>
+                
+                <div class="contact-card">
+                    <p style="margin: 0; font-size: 1.1em;">
+                        <strong>Follow-up Contact</strong><br>
+                        <span style="opacity: 0.8;">24ds2000075@ds.study.iitm.ac.in</span>
+                    </p>
+                    <p style="margin-top: 20px; margin-bottom: 0; font-size: 0.9em; opacity: 0.7;">
+                        Technical Consultant | Financial Analytics Division
+                    </p>
+                </div>
+                
+                <aside class="notes">
+                    Open floor for questions. Guide discussion toward strategic wins.
+                    For technical questions, offer email follow-up.
+                    Emphasize our strong Q3 performance and positive outlook.
+                    Thank stakeholders for their time and continued support.
+                </aside>
+            </section>
         </div>
     </div>
 
+    <!-- Reveal.js Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
@@ -161,13 +583,65 @@ print(data[['date', 'stock_price', 'rolling_avg']].tail())
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
 
     <script>
-        // Initialize Reveal.js with more elegant settings
         Reveal.initialize({
+            hash: true,
             history: true,
-            progress: true, // Adds a progress bar at the bottom
-            center: false, // Aligns content to the top for a more professional feel
-            transition: 'slide', // A smoother default transition
-            plugins: [ RevealMarkdown, RevealHighlight, RevealMath.KaTeX, RevealNotes ]
+            progress: true,
+            center: false,
+            transition: 'fade',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            
+            // Enhanced settings for better presentation flow
+            controls: true,
+            controlsTutorial: false,
+            controlsLayout: 'bottom-right',
+            controlsBackArrows: 'faded',
+            
+            // Auto-animate for smooth transitions
+            autoAnimate: true,
+            autoAnimateMatcher: null,
+            autoAnimateEasing: 'ease',
+            autoAnimateDuration: 1.0,
+            
+            plugins: [ 
+                RevealMarkdown, 
+                RevealHighlight, 
+                RevealMath.KaTeX, 
+                RevealNotes 
+            ],
+
+            // Math configuration
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+                config: 'TeX-MML-AM_CHTML'
+            },
+
+            // Code highlighting configuration
+            highlight: {
+                highlightOnLoad: true,
+                tabReplace: '    '
+            }
+        });
+
+        // Add custom animations and interactions
+        Reveal.on('ready', function() {
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add keyboard shortcuts info
+            console.log('Keyboard shortcuts: Space/Arrow keys = navigate, F = fullscreen, S = speaker view, ESC = overview');
+        });
+
+        Reveal.on('slidechanged', function(event) {
+            // Add slide transition effects
+            const currentSlide = event.currentSlide;
+            currentSlide.style.animation = 'slideInUp 0.6s ease-out';
+            
+            // Reset animation after completion
+            setTimeout(() => {
+                currentSlide.style.animation = '';
+            }, 600);
         });
     </script>
 </body>
